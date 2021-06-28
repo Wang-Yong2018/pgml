@@ -9,12 +9,7 @@ pgml is postgresql machine learning tools. It combined the advantage of postgres
 
 * install popular machine learning modules like sklearn, lightgbm, scipy, numpy, pandas and etc co-located with postgresql database(we call it as datawarehouse).
 
-<img src="photo/sklearn.jpg" width="80" height="80"/>
-<img src="photo/scipy.jpg" width="80" height="80"/>
-<img src="photo/numpy.jpg" width="80" height="80"/>
-<img src="photo/pandas.jpg" width="80" height="80"/>
-<img src="photo/numpy.jpg" width="80" height="80"/>
-<img src="photo/lightgbm.jpg" width="80" height="80"/>
+<img src="photo/sklearn.jpg" width="80" height="80"/> <img src="photo/scipy.jpg" width="80" height="80"/> <img src="photo/numpy.jpg" width="80" height="80"/> <img src="photo/pandas.jpg" width="80" height="80"/> <img src="photo/numpy.jpg" width="80" height="80"/> <img src="photo/lightgbm.jpg" width="80" height="80"/>
 
 * computer the data insides of database by postgres UDF. it is write in plpython3( one server programm lanugage).
 
