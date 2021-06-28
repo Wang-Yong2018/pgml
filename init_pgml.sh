@@ -5,12 +5,12 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-E
     create extension plpython3u;   
     create function get_python_version()
       returns text
-      as $$
+      as \$\$
         import sys
         
         python_version = sys.version
         
         return python_version
-      $$ language plpython3u;
+      \$\$ language plpython3u;
 
 EOSQL

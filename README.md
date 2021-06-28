@@ -25,7 +25,16 @@ cloud.
 * docker-compose up -d
 * docker-compose exec pgml psql -U postgres -c 'select get_python_version()' 
 
-if every thing is smooth, you will get 'python 3.7.5' prompt at the end.
+if every thing is smooth, the output will be 
+> # docker-compose exec pgml psql -U postgres -c 'select get_python_version()'
+>            get_python_version
+>            -----------------------------------------
+>             3.7.3 (default, Jan 22 2021, 20:04:44) +
+>              [GCC 8.3.0]
+>              (1 row)
+
+Congratualtion! The postgresql based machine learning datawarehouse has been ready for you using. 
+
 
 ### how to use the pgml tool
 
