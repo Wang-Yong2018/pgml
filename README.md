@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # what is pgml
 
 there is 3 core driver in machine learning. They are data, algorithms, and computing resources. Now, the data are stored in data warehouse(Relation Database such as postgresql and oracle and etc ) or data lake(mainly hadoop hive) or cloud resource(google big query, amazone RDS/ s3 and etc).
@@ -242,3 +243,6 @@ If you like pgml, pls click like. Any idea is welcomed.
 WangYong
 2021-6-28
 
+=======
+# pgml
+>>>>>>> Initial commit
