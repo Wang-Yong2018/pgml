@@ -106,7 +106,7 @@ Last but not least, Vscode can work remotely with docker-compose.
 	>
 	>	  Connection test: OK connection ok
 	>	
->	[root@wb1 pgml]#
+>	[pgml]#
 
 ### Example: Kaggle Titanic case
 
@@ -125,11 +125,14 @@ Last but not least, Vscode can work remotely with docker-compose.
 >    Completed successfully
 >    
 >    Done. PASS=4 WARN=0 ERROR=0 SKIP=0 TOTAL=4
+seed imported and source generated.
+
+<img src="photo/seed_source.jpg" width="350" height="200"/>
 
    
 2. feature engineering. Data Analysis can do feature engineering by write sql file. the file name will be stored in database warehouse as table or views based on the yml configurationi.  If the sql statement 'select * from module ' is write as  'select * from {{ref('module')}}, the dbt will automatically find the data lineage. know the data source and data destination. After finishing featuring engineering, you can run dbt run as folow to compile and execute these modules. The modoule will be created in postgresql database and the data will be created /or incrementally created. here is example:
    
->	[root@wb1 pgml]# docker-compose exec dbt dbt run
+>	[pgml]# docker-compose exec dbt dbt run
 >	
 >	Running with dbt=0.19.1
 >	
@@ -209,14 +212,21 @@ Last but not least, Vscode can work remotely with docker-compose.
 >	
 >	Done. PASS=40 WARN=0 ERROR=0 SKIP=0 TOTAL=40
 From above screen capture, you may noticed that feature engineering has bee done and put into the public_fe schema.
-   
+
+
+<img src="photo/feature_engineering.png" width="350" height="200"/>
+
 3. cross validation
 the machine learning can be run as sql. create UDF in macro folder and call the UDF in related modules. 
 From above screen capture, you may noticed that cross validation  has bee done and put into the public_fe schema.
 
+<img src="photo/cross_validation.png" width="350" height="200"/>
+
 4. Documentation.
    After run 'dbt docs generate', you will be the html formated web resource which can show data module information and data lineage.
-  ![](photo/full_pic.jpg)
+
+<img src="photo/full_pic.jpg" width="350" height="200"/>
+
 5. To be continuing...
 
 ## Advantage topic: optimization of postgres for machine learning jobs
