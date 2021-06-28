@@ -1,5 +1,12 @@
 version: '3'
 services:
+    dbt:
+        image: 'fishtownanalytics/dbt:0.19.1'
+        tty: True
+        volumes:
+            - ./profiles.yml:/root/.dbt/profiles.yml
+            - ./projects:/usr/app
+        entrypoint: /bin/bash
     pgml:
         build:
             .
