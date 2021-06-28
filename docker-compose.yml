@@ -18,4 +18,5 @@ services:
              - ./init_pgml.sh:/docker-entrypoint-initdb.d/init_pgml.sh
         environment:
             - POSTGRES_PASSWORD=postgres
-    
+        ports:
+            - 45432:5432
