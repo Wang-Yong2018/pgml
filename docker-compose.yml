@@ -1,6 +1,6 @@
 version: '3'
 services:
-    ml_db:
+    pgml:
         build:
             .
         image: 'postgres:13_ml'
@@ -8,6 +8,7 @@ services:
              - ./sources.list:/etc/apt/sources.list
              # comments above line, if you do not use tsinghua mirror
              - ./data:/var/lib/postgresql/data
+             - ./init_pgml.sh:/docker-entrypoint-initdb.d/init_pgml.sh
         environment:
             - POSTGRES_PASSWORD=postgres
         ports:

@@ -15,3 +15,6 @@ RUN pip3 install -i https://mirrors.sjtug.sjtu.edu.cn/pypi/web/simple numpy pand
 # ad-hoc install 
 RUN apt -y install  postgresql-client-13/buster-pgdg
 RUN pip3 install -i https://mirrors.sjtug.sjtu.edu.cn/pypi/web/simple lightgbm sklearn
+
+# init pgml empty script
+RUN touch /docker-entrypoint-initdb.d/init_pgml.sh
