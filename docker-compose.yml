@@ -1,0 +1,14 @@
+version: '3'
+services:
+    ml_db:
+        build:
+            .
+        image: 'postgres:13_ml'
+        volumes:
+        #    - ./sources.list:/etc/apt/sources.list
+             - ./data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - 45432:5432
+    
