@@ -5,7 +5,8 @@ services:
             .
         image: 'postgres:13_ml'
         volumes:
-        #    - ./sources.list:/etc/apt/sources.list
+             - ./sources.list:/etc/apt/sources.list
+             # comments above line, if you do not use tsinghua mirror
              - ./data:/var/lib/postgresql/data
         environment:
             - POSTGRES_PASSWORD=postgres

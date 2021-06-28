@@ -43,7 +43,14 @@ VScode is a popular IDE. Both python, Sql, and DBT can work inside it. you can u
 well as git extension.
 Last but not least, Vscode can work remotely with docker-compose. 
 
+
+### optimization of postgres
+If you want to process mediam to large volumn dataset for example(more than 100K), you can want to set postgres_ext.conf in you
+postgresql.conf. By default, postgresql server only allocation 4MB memory for each of connection.
+
 That's all!
+
+
 
 If you like pgml, pls click like. Any idea is welcomed.
 
