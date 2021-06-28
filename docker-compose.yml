@@ -1,0 +1,31 @@
+version: '3'
+services:
+    dbt:
+        image: 'fishtownanalytics/dbt:0.19.1'
+        tty: True
+        working_dir: /usr/app/titanic
+        volumes:
+            - ./profiles.yml:/root/.dbt/profiles.yml
+            - ./projects/titanic:/usr/app/titanic
+        entrypoint: /bin/bash
+    pgml:
+        build:
+            .
+        image: 'postgres:13_ml'
+        volumes:
+             - ./sources.list:/etc/apt/sources.list
+             # comments above line, if you do not use tsinghua mirror
+             - ./data:/var/lib/postgresql/data
+             - ./init_pgml.sh:/docker-entrypoint-initdb.d/init_pgml.sh
+        environment:
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - "55432:5432"
+
+    nginx:
+         image: nginx
+         volumes:
+             - ./projects:/usr/share/nginx/html
+         ports:
+             - "50080:80"
+
