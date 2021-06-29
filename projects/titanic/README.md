@@ -1,5 +1,6 @@
 # Titanic - Machine learning from Disaster
 It is the classroom machine learning competition launched by Kaggle.  Thousands of data scientists joined the competition as the beginning of the Machine Learning.
+
 <img src="../../photo/titanic.jpg" width="200" height="150"/>
 
 Original link: https://www.kaggle.com/c/titanic/data.  Kaggle provide the jupyter notebook IDE for competitors analyze data, feature engineering, train and predict. 
