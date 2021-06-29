@@ -1,0 +1,40 @@
+version: 2
+models:
+  - name: stg_train_describe
+  - name: stg_test_describe
+  - name: stg_train
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_train')
+  - name: stg_test
+  - name: stg_train_fe_baseline
+    description: "train feature only use numerical type: integer, float or boolean"
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_train')
+  - name: stg_train_fe_titleid
+    description: "train feature was based on basedline and create title based on name column"
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_train')
+  - name: stg_combined_fe
+    description: "selected features"
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_all')

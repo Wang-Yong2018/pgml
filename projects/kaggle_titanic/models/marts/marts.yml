@@ -1,0 +1,62 @@
+version: 2
+models:
+  - name: ml_trained_result
+  - name: get_corr
+    columns:
+      - name: column_name
+        tests:
+          - unique
+          - not_null
+exposures:
+  - name: viz_train
+    type: dashboard
+    maturity: high
+    url: http://localhost:8080/#!/model/model.ml_titanic.viz_train#details
+    description: >
+       This is EDA analysis for Titanic train table 
+    depends_on:
+    #   - ref('')
+       - ref('viz_train')
+    #   - source('gsheets', 'goals')
+    owner:
+      name: WangYong
+      email: w.yong@yahoo.com
+
+  - name: viz_column_type
+    type: dashboard
+    maturity: high
+    url: http://localhost:8080/#!/model/model.ml_titanic.viz_column_type?g_v=1&g_i=%2Bviz_column_type%2B
+    description: >
+       This is EDA analysis for all Titanic table columns. count, null, unquie, data_type and etc 
+    depends_on:
+      - ref('viz_column_type')
+    #   - ref('dim_customers')
+    #   - source('gsheets', 'goals')
+    owner:
+      name: WangYong
+      email: w.yong@yahoo.com
+
+  - name: viz_trained_results
+    type: dashboard
+    maturity: high
+    url: ''
+    description: >
+       This is data set for machine learning traing result benchmark. accuracy score is one of the scores
+    depends_on:
+      - ref('viz_trained_results')
+    #   - ref('dim_customers')
+    #   - source('gsheets', 'goals')
+    owner:
+      name: WangYong
+      email: w.yong@yahoo.com
+  - name: get_corr
+    type: dashboard
+    maturity: low
+    url: ''
+    description: >
+       check the correlation score about feature engineering resut with the target variable
+    depends_on:
+      - ref('get_corr')
+    owner:
+      name: WangYong
+      email: w.yong@yahoo.com

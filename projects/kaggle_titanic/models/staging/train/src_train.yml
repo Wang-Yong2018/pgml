@@ -1,0 +1,99 @@
+version: 2
+
+sources:
+  - name: informatic
+    schema: information_schema
+    tables: 
+      - name: columns
+        description: the column information of stored table
+  - name: db
+    schema: pg_catalog
+    tables:
+      - name: pg_stats
+        description: table statistic information
+  - name: titanic
+    description: Kaggle original titanic dataset train
+    schema: public
+    tables:
+      - name: benchmark
+        meta:
+          source: The data was downloaded from kaggle which training score is more than 80% average https://www.kaggle.com/startupsci/titanic-data-science-solutions 
+          owner: "wangyong"
+      - name: train
+        meta:
+          source: The data was downloaded from www.kaggle.com
+          owner: "wangyong"
+        description: This is titanic train data set.
+        columns:
+          - name: passengerid
+            description: 旅客编号
+            meta: {<dictionary>}
+            quote: false
+            tests:
+              - unique
+              - not_null
+          - name: survived
+            description: 是否幸存者
+          - name: pclass
+            description: 船票等级
+          - name: name
+            description: 姓名
+          - name: sex
+            description: 性别
+          - name: age
+            description: 年龄
+          - name: sibsp
+            description: 是否表亲关系
+          - name: parch
+            description: 是否父母子女关系
+          - name: ticket
+            description: 船票号
+          - name: fare
+            description: 价格
+          - name: cabin
+            description: 船舱
+          - name: embarked
+            description: 登船码头
+      - name: test
+        description: This is titanic test data set. compared to training set, it has no survived column data.
+        columns:
+          - name: passengerid
+            description: 旅客编号
+            quote: false
+            tests:
+              - unique
+              - not_null
+          - name: pclass
+            description: 船票等级
+          - name: name
+            description: 姓名
+          - name: sex
+            description: 性别
+          - name: age
+            description: 年龄
+          - name: sibsp
+            description: 是否表亲关系
+          - name: parch
+            description: 是否父母子女关系
+          - name: ticket
+            description: 船票号
+          - name: fare
+            description: 价格
+          - name: cabin
+            description: 船舱
+          - name: embarked
+            description: 登船码头
+      - name: gender_submission
+        description: This is titanic submission data set. It contains only id and survied columns as prediction value.
+        columns:
+          - name: passengerid
+            description: 旅客编号
+            meta: {<dictionary>}
+            quote: false
+            tests:
+              - unique
+              - not_null
+          - name: survived
+            description: 是否幸存者, 注：数值需要后期机器学习后预测
+
+        
