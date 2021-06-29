@@ -1,0 +1,16 @@
+version: 2
+models:
+  - name: ml_fe_baseline
+    description: 'Basic model as reference'
+    # +materialized: 'table'
+  - name: ml_fe_titleid
+    description: 'feature engineering improved by new feature: title_id which extract from name columnad and converted into numerical value. based on stg_train_fe_baseline_0. '
+    # +materialized: 'table'
+  - name: ml_fe_titleid_refined
+    description: 'feature engineering improved by based on stg_train_fe_baseline_0. new feature: fixed misstype title and merge fare id base on stg_train_fe_titleid'
+    # +materialized: 'table'
+  - name: ml_fe_sex
+    description: 'sex feature ml'
+    # +materialized: 'table'
+  # - name: combined_ml_results
+    # +materialized: 'incremental'

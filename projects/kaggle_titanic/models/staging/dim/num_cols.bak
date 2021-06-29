@@ -1,0 +1,10 @@
+{% set num_cols = ['pclass', 'age', 'sibsp', 'parch','fare'] %}
+select
+    dataset,
+    passengerid,
+    {% for col in num_cols %}
+        coalesce({{ col }},0) as {{col}}_num_col {% if not loop.last %},
+        {% endif %}
+    {% endfor %}
+from
+    {{ ref('stg_all') }}

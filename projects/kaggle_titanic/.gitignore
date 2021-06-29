@@ -1,0 +1,7 @@
+.vscode/
+.venv/
+logs/
+temp/
+pytest/
+target/
+.pytst_cache/
