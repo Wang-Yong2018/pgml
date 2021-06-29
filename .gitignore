@@ -1,6 +1,4 @@
 data/
-<<<<<<< HEAD
-=======
 **/.vscode/**
 **/.venv/**
 **/temp/**
@@ -8,4 +6,3 @@ data/
 **/target/**
 **/pytest/**
 **/.pytest_cache/**
->>>>>>> temp
