@@ -1,0 +1,6 @@
+downloaded/
+temp/
+.vscode/
+.venv/
+logs/
+target/

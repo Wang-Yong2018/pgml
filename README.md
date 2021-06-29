@@ -23,7 +23,7 @@ pgml is postgresql machine learning tools. It combined the advantage of postgres
 <img src="photo/docker.jpg" width="80" height="80"/>
 
 
-# Getting start of pgml
+# Getting_Start
 Let's get pgml and get the python version by run sql inside of postgresql datawarehouse.
 ## requirements:
 
@@ -59,180 +59,91 @@ Congratualtion! The postgresql based machine learning datawarehouse has been rea
 1. write postgresql UDF by plpython3u. Inside of UDF, you can write it like normal python script or functions. 
 2. call the writed UDF in sql
 3. get the result.
+
 I used to manually mantenance the table, view and datas via using postgresql as machine learning warehouse. However, it is quite hard to change(DDL), read(DML) and test and quality control the code.
 
 ## DBT mode(easy mode)
 ### why DBT
-In 2021, I was found there is ETL tools focused on data transformation called DBT. DBT is a data built tool which focused on data
-transformation with data lineage, test, and DAG. With DBT, You can still write SQL and gain quality control, documents and team work. DBT did not need data analyst to create table/view by DDL.
+In 2021, I was found there is ETL tools focused on data transformation called DBT. DBT is a data built tool which focused on data transformation with data lineage, test, and DAG. With DBT, You can still write SQL and gain quality control, documents and team work. DBT did not need data analyst to create table/view by DDL or DML. With DBT, you can easily do featuring engineering or make sure data quality and find data lineage.
 
-Besides, you can use DBT + vscode ide. It will make life and work easy. 
-VScode is a popular IDE. Both python, Sql, and DBT can work inside it. you can use python extension, dbt extension as
-well as git extension.
+- Easy feature engineering. Data Analysis can do feature engineering by write sql file. the file name will be stored in database warehouse as table or views based on the yml configurationi. 
+- Automatic data lineage. If the sql statement 'select * from module ' is write as  'select * from {{ref('module')}}, the dbt will automatically find the data lineage. You can know the data source and data destination. 
+- Rework easy. Not only feature engineering nor model cross validation is a work of exploratory. having one idea then try and test, another try again and again. With dbt run command, after finishing featuring engineering, you can run dbt run as folow to compile and execute these modules. The modoule will be created in postgresql database and the data will be created /or incrementally created. here is example:
+- Quality in the control. DBT has provide test function. Data analyst can test the data module schema and data quality in many mode.
+- Integrated development, you can use DBT + vscode IDE. VScode is a popular IDE. Both python, Sql, and DBT can work inside it. you can use python extension, dbt extension as well as git extension.
+- Working remotely. With VScode remote explorer feature, the client, DBT and Postgres Database can work in 3 different servers or docker containers.  
 
-Last but not least, Vscode can work remotely with docker-compose. 
+# Example
 
-### Preparing
-1. profiles.yml. This file will define the datawarehouse connection information. 
-2. dbt_project.yml. This file will connect profile.yml datawarehouse name and define the project folder position.
-3. run dbt deps. It will get dbt 3rd party extension from dbt hub.
-3. environment check by dbt config. If everything is OK, you can see following output:
+## tiny data (below 100K rows)
+Titanic. Machine learning from disaster. It is the classroom machine learning competition launched by Kaggle.  Thousands of data scientists joined the competition as the beginning of the Machine Learning.
+<img src="photo/titanic.jpg" width="200" height="150"/>
 
->\#  pwd
->
-	>/temp/pgml
->
->
-> \# docker-compose exec dbt dbt debug
->
->
->	Configuration:
->
-	>	  profiles.yml file [OK found and valid]
-	>
-	>	  dbt_project.yml file [OK found and valid]
->	
->	Required dependencies:
->
-	>	 - git [OK found]
->	
->	Connection:
-	
-	>
-	>	  Connection test: OK connection ok
-	>	
->	[pgml]#
+Here is the original link: https://www.kaggle.com/c/titanic/data.  Kaggle provide the jupyter notebook IDE for competitors analyze data, feature engineering, train and predict. 
+Why not use pgml +DBT ? Here is the link of PGML implementation:![Titanic](./projects/titanic/README.md)
 
-### Example: Kaggle Titanic case
+## small data
+TO DO
 
-1. Load data by run dbt seed. (put the original csv inside of project data folder. The dbt will automaticall import data into postgres datawarehouse). Below is example of load titanic train, test, kaggle benchmark csv .
->    	[ pgml]# docker-compose exec dbt dbt seed
->    	Running with dbt=0.19.1
->    	Found 40 models, 65 tests, 0 snapshots, 0 analyses, 157 macros, 2 operations, 4 seed files, 6 sources, 4 exposures
->    	08:19:18 | 2 of 4 OK loaded seed file public.gender_submission.................. [INSERT 418 in 0.46s]
->    	08:19:18 | 1 of 4 OK loaded seed file public.benchmark.......................... [INSERT 891 in 0.47s]
->    	08:19:18 | 3 of 4 OK loaded seed file public.test............................... [INSERT 418 in 0.47s]
->    	08:19:18 | 4 of 4 START seed file public.train.................................. [RUN]
->    	08:19:18 | 4 of 4 OK loaded seed file public.train.............................. [INSERT 891 in 0.21s]
->    	08:19:18 |
->    	08:19:18 | Finished running 4 seeds, 2 hooks in 0.90s.
->    
->    Completed successfully
->    
->    Done. PASS=4 WARN=0 ERROR=0 SKIP=0 TOTAL=4
-seed imported and source generated.
+## medium data
+TO DO
 
-<img src="photo/seed_source.jpg" width="350" height="200"/>
+## large data 
+TO DO
 
-   
-2. feature engineering. Data Analysis can do feature engineering by write sql file. the file name will be stored in database warehouse as table or views based on the yml configurationi.  If the sql statement 'select * from module ' is write as  'select * from {{ref('module')}}, the dbt will automatically find the data lineage. know the data source and data destination. After finishing featuring engineering, you can run dbt run as folow to compile and execute these modules. The modoule will be created in postgresql database and the data will be created /or incrementally created. here is example:
-   
->	[pgml]# docker-compose exec dbt dbt run
->	
->	Running with dbt=0.19.1
->	
->	Found 40 models, 65 tests, 0 snapshots, 0 analyses, 339 macros, 2 operations, 4 seed files, 6 sources, 4 exposures
->	
->	08:39:21 |
->	
->	08:39:21 | Running 2 on-run-start hooks
->	
->	08:39:21 | 1 of 2 START hook: ml_titanic.on-run-start.0......................... [RUN]
->	
->	08:39:21 | 1 of 2 OK hook: ml_titanic.on-run-start.0............................ [DO in 0.00s]
->	
->	08:39:21 | 2 of 2 START hook: ml_titanic.on-run-start.1......................... [RUN]
->	
->	08:39:21 | 2 of 2 OK hook: ml_titanic.on-run-start.1............................ [CREATE FUNCTION in 0.02s]
->	
->	08:39:21 | Concurrency: 3 threads (target='dev')
->	
->	08:39:21 |
->	
->	08:39:21 | 1 of 40 START table model public.stg_all............................. [RUN]
->	
->	08:39:21 | 2 of 40 START table model public.stg_benchmark_819p.................. [RUN]
->	
->	08:39:21 | 3 of 40 START table model public.stg_train........................... [RUN]
->	
->	08:39:22 | 1 of 40 OK created table model public.stg_all........................ [SELECT 1309 in 0.28s]
->	
->	08:39:22 | 4 of 40 START table model public.stg_train_test...................... [RUN]
->	
->	08:39:22 | 2 of 40 OK created table model public.stg_benchmark_819p............. [SELECT 891 in 0.28s]
->	
->	08:39:22 | 3 of 40 OK created table model public.stg_train...................... [SELECT 891 in 0.29s]
->	
->	08:39:24 | 31 of 40 OK created table model public.stg_combined_fe............... [SELECT 1309 in 0.14s]
->	
->	08:39:24 | 33 of 40 START incremental model public_models.ml_fe_baseline_title_refined [RUN]
->	
->	08:39:25 | 28 of 40 OK created incremental model public_models.ml_fe_baseline... [INSERT 0 2 in 1.80s]
->	
->	08:39:26 | 32 of 40 OK created incremental model public_models.ml_fe_baseline_sex [INSERT 0 2 in 1.72s]
->	
->	08:39:26 | 35 of 40 START table model public.stg_combined_fe_train.............. [RUN]
->	
->	08:39:26 | 35 of 40 OK created table model public.stg_combined_fe_train......... [SELECT 891 in 0.08s]
->	
->	08:39:26 | 36 of 40 START view model public_superset.get_corr................... [RUN]
->	
->	08:39:26 | 33 of 40 OK created incremental model public_models.ml_fe_baseline_title_refined [INSERT 0 2 in 1.74s]
->	
->	08:39:26 | 37 of 40 START table model public.stg_combined_fe_test............... [RUN]
->	
->	08:39:26 | 36 of 40 OK created view model public_superset.get_corr.............. [CREATE VIEW in 0.12s]
->	
->	08:39:26 | 38 of 40 START incremental model public_models.ml_fe_combined........ [RUN]
->	
->	08:39:26 | 37 of 40 OK created table model public.stg_combined_fe_test.......... [SELECT 418 in 0.12s]
->	
->	08:39:26 | 39 of 40 START view model public_superset.filtered_fe................ [RUN]
->	
->	08:39:26 | 39 of 40 OK created view model public_superset.filtered_fe........... [CREATE VIEW in 0.03s]
->	
->	08:39:27 | 34 of 40 OK created incremental model public_models.ml_fe_baseline_title [INSERT 0 2 in 1.74s]
->	
->	08:39:29 | 38 of 40 OK created incremental model public_models.ml_fe_combined... [SELECT 2 in 2.28s]
->	
->	08:39:29 | 40 of 40 START view model public_superset.viz_trained_results........ [RUN]
->	
->	08:39:29 | 40 of 40 OK created view model public_superset.viz_trained_results... [CREATE VIEW in 0.04s]
->	
->	08:39:29 |
->	
->	08:39:29 | Finished running 24 table models, 7 view models, 9 incremental models, 2 hooks in 7.57s.
->	
->	Completed successfully
->	
->	Done. PASS=40 WARN=0 ERROR=0 SKIP=0 TOTAL=40
-From above screen capture, you may noticed that feature engineering has bee done and put into the public_fe schema.
+# Visualization
+The feature engineering and cross validate result could be visualized by [superset](https://superset.apache.org/) 
+I will consider add the feature in coming months.
 
-
-<img src="photo/feature_engineering.png" width="350" height="200"/>
-
-3. cross validation
-the machine learning can be run as sql. create UDF in macro folder and call the UDF in related modules. 
-From above screen capture, you may noticed that cross validation  has bee done and put into the public_fe schema.
-
-<img src="photo/cross_validation.png" width="350" height="200"/>
-
-4. Documentation.
-   After run 'dbt docs generate', you will be the html formated web resource which can show data module information and data lineage.
-
-<img src="photo/full_pic.jpg" width="350" height="200"/>
-
-5. To be continuing...
-
-## Advantage topic: optimization of postgres for machine learning jobs
+# Advantage topic: optimization of postgres for machine learning jobs
 If you want to process mediam to large volumn dataset for example(more than 100K), you can want to set postgres_ext.conf in you
 postgresql.conf. By default, postgresql server only allocation 4MB memory for each of connection.
 
+
+# Reference
+## Machine Learning In database 
+- Call python machine learning in Postgres (https://dba.stackexchange.com/questions/160620/call-python-machine-learning-model-from-udf-or-sp)
+
+## DBT
+- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
+- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
+- Join the [chat](http://slack.getdbt.com/) on Slack for live discussions and support
+- Find [dbt events](https://events.getdbt.com) near you
+- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+
+
 That's all!
-
-
 
 If you like pgml, pls click like. Any idea is welcomed.
 
 WangYong
 2021-6-28
+
+
+Another Machine Learning way 
+
+Data Science by Data build tools & Postgres
+
+The typical machine learning mode is pull data from datasource, and run it in jupyter or other similar IDE. It is popular but facing following challenge:
+1. Gained data privacy concern : currently, machine learning need pull all(or big simple rate) data from data source. It should be big concern about data privacy. or leak data. as the regulation strict, the concern will be more and more for data owners.
+2. limited featuring engineering colaboration:  to improve the trained model accuracy, feature engineering is important. it is dirty and hard work. Though kaggle has helped share brilliant feature engineering idea about many dataset. It is time to think how to let a group of people to work on feature engineering and assign work always.
+3. hard to handle complex issue: based on the juputer notebook, a small data science case could be done smoothly. if the data is big and the case is complex, the jupyter notebook will be from hundres of line to thousand and more lines. Though the python or R code could be split into class or functions, the jupyter based data science project look hard to understand and handle those complex concern.
+4. lack of testing: Before a data science case jupyter notebook ready, it may need many tests for data, functions and classes.  people can write test snippest inside jupyter notebook. soon or later, those snippest are difficult to find or manucipate. And data science has to run the test manually after found those  test snippest.
+5. lack of module lineage and document:  Though luckly got the trained model with expect score, the juputer note book is difficult read and found how those model was trained and which feature engineering contributed to the best modules. Some data scientists manually write docuement or draw diagram to show them. It spent extra time and the module lineage might out of data afte module refined.
+6. often memeory overload: when facing big data machin learning, the featuring engineering use memory, the data manucipate need manage, the traning need memory, after rounds of works, data scientist has to release memory for unused data setts. Those gabage collection are always difficult and lead to upset.
+
+DBT based machine learning way could solve above problems:
+1. data privacy concern :  the machine learning was converted to UDF(user defined function) inside the datawarehouse/lake. There is no need to pull data outside. Data scientist could use all data in the datawarehouse. The concers of data owner for 
+
+2. limited featuring engineering colaboration:
+3. hard to handle complex issue: 
+4. lack of testing: 
+5. lack of module lineage and document:
+6. often memeory overload:
+
+For small data, pull data from data 
+This is a try to run Kaggle dataset machine learning inside Database and with DBT.
+
+Database helps store and computer.
+DBT helps to do version control, test and documentation.
+Superset help to visualize the data & model in easy understand way.
