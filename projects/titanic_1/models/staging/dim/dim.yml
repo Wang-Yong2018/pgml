@@ -1,0 +1,115 @@
+version: 2
+models:
+  - name: target
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_all')
+  - name: cabin
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_all')
+        - name: cabin_fe_1
+          tests:
+            - not_null
+        - name: cabin_fe_2
+          tests:
+            - not_null
+  - name: fare
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_all')
+        - name: fare_fe_1
+          tests:
+            - not_null
+  - name: is_alone
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_all')
+        - name: is_alone_fe_1 
+          tests:
+            - not_null
+  - name: titles
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_all')
+        - name: titles_fe_1 
+          tests:
+            - not_null
+  - name: titles_refined
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_all')
+        - name: titles_refined_fe_1 
+          tests:
+            - not_null
+  - name: ticket
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_all')
+        - name: ticket_fe_1 
+          tests:
+            - not_null
+        - name: ticket_fe_2 
+          tests:
+            - not_null
+  - name: sex
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_all')
+        - name: sex_fe_1 
+          tests:
+            - not_null
+  - name: embarked
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_all')
+        - name: embarked_fe_1 
+          tests:
+            - not_null
+  - name: age
+    columns:
+        - name: passengerid
+          tests:
+            - unique
+            - not_null
+            - dbt_utils.equal_rowcount:
+                compare_model: ref('stg_all')
+        - name: age_fe_1
+          tests:
+            - not_null

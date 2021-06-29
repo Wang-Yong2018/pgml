@@ -1,0 +1,6 @@
+version: 2
+models:
+  - name: cv5
+  - name: cv10
+  - name: cv_v1
+  - name: cv_benchmark
