@@ -1,1 +1,11 @@
 data/
+<<<<<<< HEAD
+=======
+**/.vscode/**
+**/.venv/**
+**/temp/**
+**/logs/**
+**/target/**
+**/pytest/**
+**/.pytest_cache/**
+>>>>>>> temp

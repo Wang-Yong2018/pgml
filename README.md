@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> temp
 # what is pgml
 
 there is 3 core driver in machine learning. They are data, algorithms, and computing resources. Now, the data are stored in data warehouse(Relation Database such as postgresql and oracle and etc ) or data lake(mainly hadoop hive) or cloud resource(google big query, amazone RDS/ s3 and etc).
@@ -8,12 +12,16 @@ pgml is postgresql machine learning tools. It combined the advantage of postgres
 
 * install popular machine learning modules like sklearn, lightgbm, scipy, numpy, pandas and etc co-located with postgresql database(we call it as datawarehouse).
 
+<<<<<<< HEAD
 <img src="photo/sklearn.jpg" width="80" height="80"/>
 <img src="photo/scipy.jpg" width="80" height="80"/>
 <img src="photo/numpy.jpg" width="80" height="80"/>
 <img src="photo/pandas.jpg" width="80" height="80"/>
 <img src="photo/numpy.jpg" width="80" height="80"/>
 <img src="photo/lightgbm.jpg" width="80" height="80"/>
+=======
+<img src="photo/sklearn.jpg" width="80" height="80" >|<img src="photo/scipy.jpg" width="80" height="80"/>|<img src="photo/numpy.jpg" width="80" height="80"/>|<img src="photo/pandas.jpg" width="80" height="80"/>|<img src="photo/numpy.jpg" width="80" height="80"/>|<img src="photo/lightgbm.jpg" width="80" height="80"/>
+>>>>>>> temp
 
 * computer the data insides of database by postgres UDF. it is write in plpython3( one server programm lanugage).
 
@@ -242,3 +250,9 @@ If you like pgml, pls click like. Any idea is welcomed.
 WangYong
 2021-6-28
 
+<<<<<<< HEAD
+=======
+=======
+# pgml
+>>>>>>> Initial commit
+>>>>>>> temp
