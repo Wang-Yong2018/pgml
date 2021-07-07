@@ -1,6 +1,4 @@
-downloaded/
-temp/
-.vscode/
-.venv/
-logs/
+
 target/
+dbt_modules/
+logs/

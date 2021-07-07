@@ -13,5 +13,21 @@ ml_titanic:
       # search_path: ['public']
       role: postgres
       # sslmode: []
+
+web_traffic:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: pgml
+      user: postgres
+      password: postgres
+      port: 5432
+      dbname: web_traffic
+      schema: public 
+      threads: 3 
+      # search_path: ['public']
+      role: postgres
+      # sslmode: []
 config: 
   send_anonymous_usage_stats: False
