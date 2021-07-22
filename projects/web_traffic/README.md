@@ -1,15 +1,20 @@
-Welcome to your new dbt project!
+This is a study for using postgres + dbt to explore Kaggle [web_traffic](https://www.kaggle.com/c/web-traffic-time-series-forecasting) dataset
 
-### Using the starter project
+Dataset size: GB level
+type: time series and forecase
+Description: Using wiki page daily click to forecast future daily click.
+
+Dataset DBT model up to now:
+
+<img src="../../photo/web_traffic_dbt_dag.jpg" width="400" height="3000"/>
 
 Try running the following commands:
 - dbt run
 - dbt test
 
+The graph of inital EDA.
+
 
 ### Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](http://slack.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+- Learn more about postgres [in the docs](https://www.postgresql.org/docs/13/index.html)
