@@ -154,7 +154,7 @@ Superset help to visualize the data & model in easy understand way.
 - 0.1  initial version (PGML + use case: Titanic)
 
 - 0.2  add vector calcuation, unique count feature and light mode viz container)
-  - add hll. it is hyperloglog extension. Which can used to do unique count in big data case in O(n) time.
-  - enable pg_statement_stat by default.tracking execution statistics of all SQL statements executed. It will help to optimize a DBT model time performance.
-  - add vector, aggs_for_arrays, aggs_for_vecs, after it can directly calculate postgres array type, though just basic statisc, sum, mean, std and etc.
-  - add blaze as data web visualize.
+  - add [hll.](https://github.com/citusdata/postgresql-hll) it is hyperloglog extension. Which can used to do unique count in big data case in O(n) time.
+  - enable [pg_statement_stat](https://www.postgresql.org/docs/13/pgstatstatements.html) by default.tracking execution statistics of all SQL statements executed. It will help to optimize a DBT model time performance.
+  - add [vector](https://pgxn.org/dist/floatvec/), [aggs_for_arrays](https://pgxn.org/dist/aggs_for_arrays/1.3.2/), [aggs_for_vecs](https://pgxn.org/dist/aggs_for_vecs/), after it can directly calculate postgres array type, though just basic statisc, sum, mean, std and etc.
+  - add [blaze](https://github.com/ankane/blazer) as data web visualize.
