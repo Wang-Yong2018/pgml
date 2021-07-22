@@ -82,11 +82,15 @@ Titanic. Machine learning from disaster. It is the classroom machine learning co
 Here is the original link: https://www.kaggle.com/c/titanic/data.  Kaggle provide the jupyter notebook IDE for competitors analyze data, feature engineering, train and predict. 
 Why not use pgml +DBT ? Here is the link of PGML implementation:![Titanic](./projects/titanic/README.md)
 
-## small data
-TO DO
+## medium data(around (145K web pages daily activily, around 583MB compressed csv)
+Web Traffic forecast focuses on the problem of forecasting the future values of multiple time series, as it has always been one of the most challenging problems in the field. More specifically, we aim the competition at testing state-of-the-art methods designed by the participants, on the problem of forecasting future web traffic for approximately 145,000 Wikipedia articles.
 
-## medium data
-TO DO
+<img src="photo/web_traffic.jpg" width="200" height="150"/>
+
+Here is the original link: https://www.kaggle.com/c/web-traffic-time-series-forecasting/overview   Kaggle provide the jupyter notebook IDE for competitors analyze data, feature engineering, train and predict. 
+
+Why not use pgml +DBT ? Here is the link of PGML implementation:![web_traffic](./projects/web_traffic/README.md)
+
 
 ## large data 
 TO DO
