@@ -1,0 +1,56 @@
+version: 2
+
+sources:
+    - name: web_traffic
+      quoting:
+        identifier: true
+      schema: public
+      tables:
+        - name: train_1
+          identifier: _airbyte_raw_train_1
+          columns:
+            - name: _airbyte_ab_id
+              tests:
+                - unique
+                - not_null
+        - name: train_2
+          identifier: _airbyte_raw_train_2
+          columns:
+            - name: _airbyte_ab_id
+              tests:
+                - unique
+                - not_null
+        - name: key_1
+          columns:
+            - name: "Id"
+              quote: true
+              tests:
+                - unique
+                - not_null
+        - name: key_2
+          columns:
+            - name: "Id"
+              quote: true
+              tests:
+                - unique
+                - not_null
+        - name: sample_submission_2
+        - name: wiki_tag
+        - name: baseline_oneline
+    # - name: stage2db
+    #   database: web_traffic
+    #   schema: public
+    #   tables:
+    #     - name: key_2
+    #     - name: _airbyte_raw_train_1
+    #       identifier: train
+    #     - name: sample_submission_2
+    #       identifier: ss2
+      # - name: sample_submission_1
+      #   identifier: submission_1
+      # - name: sample_submission_2
+      #   identifier: submission_2
+      # - name: _airbyte_raw_train_1
+      #   identifier: train_1
+      # - name: _airbyte_raw_train_2
+      #   identifier: train_2

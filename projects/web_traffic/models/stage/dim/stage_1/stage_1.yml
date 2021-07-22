@@ -1,0 +1,22 @@
+version: 2
+models:
+  - name: key_1_fe_page_item
+    columns:
+        - name: row_id
+          tests:
+            - unique
+            - not_null
+        - name: page_id
+          tests:
+            - unique
+            - not_null
+  - name: key_2_fe_page_item
+    columns:
+        - name: row_id
+          tests:
+            - unique
+            - not_null
+        - name: page_id
+          tests:
+            - unique
+            - not_null

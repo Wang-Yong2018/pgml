@@ -21,6 +21,13 @@ RUN pgxnclient install aggs_for_arrays ;\
     pgxnclient install floatvec;\
     pgxnclient install vector
 
+# add hll extension
+ADD ./extension/postgresql-hll-master.zip /temp/postgresql-hll-master.zip
+RUN unzip -d /tmp/ /temp/postgresql-hll-master.zip && \
+    cd /tmp/postgresql-hll-master && \
+    make && make install && \
+    rm -rf /tmp/postgresql-hll-master 
+    
 
 # init pgml empty script
 RUN touch /docker-entrypoint-initdb.d/init_pgml.sh

@@ -1,0 +1,13 @@
+with source as (select 
+	page_id,
+	--page,
+	ts
+from 
+	{{ ref('train_1_raw_page')}}
+)
+select 
+	source.page_id, 
+	ts_v.key::date as day,
+	ts_v.value::float4 as click_cnt
+from source,jsonb_each_text(ts) as ts_v
+

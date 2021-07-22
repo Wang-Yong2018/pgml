@@ -1,0 +1,14 @@
+version: 2
+exposures:
+  
+  - name: kaggle
+    type: ml
+    description: >
+      submit to kaggle for benchmark
+    
+    depends_on:
+      - source('web_traffic', 'baseline_oneline')
+      
+    owner:
+      name: WangYong
+      email: w.yogng@yahoo.com

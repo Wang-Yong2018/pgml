@@ -1,9 +1,11 @@
 version: '3'
 services:
     dbt:
-        image: 'fishtownanalytics/dbt:0.19.1'
+        image: 'fishtownanalytics/dbt:0.20.0'
         tty: True
         working_dir: /usr/app/
+        environment:
+            - TZ=Asia/Shanghai
         volumes:
             - ./profiles.yml:/root/.dbt/profiles.yml
             - ./projects/:/usr/app/
@@ -11,21 +13,48 @@ services:
     pgml:
         build:
             .
-        image: 'postgres:13_ml'
+        image: '130.252.90.233:15000/postgres:13_ml'
         volumes:
              - ./sources.list:/etc/apt/sources.list
              # comments above line, if you do not use tsinghua mirror
              - ./data:/var/lib/postgresql/data
              - ./init_pgml.sh:/docker-entrypoint-initdb.d/init_pgml.sh
         environment:
+            - TZ=Asia/Shanghai
             - POSTGRES_PASSWORD=postgres
         ports:
-            - "55432:5432"
+            - "55433:5432"
 
     nginx:
-         image: nginx
-         volumes:
-             - ./projects:/usr/share/nginx/html
-         ports:
-             - "50080:80"
+        image: 130.252.90.233:15000/nginx:latest
+        environment:
+            - TZ=Asia/Shanghai
+        volumes:
+            - ./projects:/usr/share/nginx/html
+        ports:
+            - "50080:80"
 
+    blazer:
+        image: '130.252.90.233:15000/atankane/blazer_od:0.1'
+        # build:
+        #      context: .
+        #      dockerfile: ./Dockerfile_blazer
+        environment:
+            - TZ=Asia/Shanghai
+            - DATABASE_URL=postgres://postgres:postgres@pgml:5432/blazer
+            - PG_DATABASE_URL=postgres://postgres:postgres@pgml:5432/web_traffic
+            - MAPBOX_ACCESS_TOKEN='pk.eyJ1Ijoid2FuZ3lvbmctankiLCJhIjoiY2poaXF3ZTI5MXZqNzNkbzdkMzZ6OTlxdiJ9.prAJ5xi6uBiRODTXQkj4Rg'
+        volumes:
+            - ./Gemfile:/app/Gemfile
+            - ./blazer.yml:/app/config/blazer.yml
+        ports:
+            - "58080:8080"
+#    pgadmin:
+#        image: dpage/pgadmin4:5.4
+#        environment:
+#            - PGADMIN_DEFAULT_EMAIL=pgadmin@
+#            - PGADMIN_DEFAULT_PASSWORD=pgadmin@
+#            - PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION=True
+#            - PGADMIN_CONFIG_CONSOLE_LOG_LEVEL=3
+#        ports:
+#            - "50081:80"

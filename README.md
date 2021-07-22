@@ -147,3 +147,14 @@ This is a try to run Kaggle dataset machine learning inside Database and with DB
 Database helps store and computer.
 DBT helps to do version control, test and documentation.
 Superset help to visualize the data & model in easy understand way.
+
+
+# Release note
+
+- 0.1  initial version (PGML + use case: Titanic)
+
+- 0.2  add vector calcuation, unique count feature and light mode viz container)
+  - add hll. it is hyperloglog extension. Which can used to do unique count in big data case in O(n) time.
+  - enable pg_statement_stat by default.tracking execution statistics of all SQL statements executed. It will help to optimize a DBT model time performance.
+  - add vector, aggs_for_arrays, aggs_for_vecs, after it can directly calculate postgres array type, though just basic statisc, sum, mean, std and etc.
+  - add blaze as data web visualize.
