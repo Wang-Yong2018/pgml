@@ -6,7 +6,7 @@ Description: Using wiki page daily click to forecast future daily click.
 
 Dataset DBT model up to now:
 
-<img src="../../photo/web_traffic_dbt_dag.jpg" width="400" height="3000"/>
+<img src="../../photo/web_traffic_dbt_dag.jpg" width="400" height="300"/>
 
 Try running the following commands:
 - dbt run
